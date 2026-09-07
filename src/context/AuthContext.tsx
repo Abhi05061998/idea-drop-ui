@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react'
 import { refreshAccessToken } from '../apis/auth.ts'
-import { setStoredAccessToken } from '../lib/authToken.ts'
+import { setStoredAccessToken,getStoredAccessToken } from '../lib/authToken.ts'
 type AuthContextType = {
   accessToken: string | null
   setAccessToken: (token: string | null) => void
