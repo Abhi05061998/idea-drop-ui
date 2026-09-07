@@ -31,7 +31,7 @@ export const loginUser = async ({
   password: string
 }) => {
   try {
-    const res = await api.post('/auth/login', { email, password })
+    const res = await api.post('api/auth/login', { email, password })
     return res.data
   } catch (err: any) {
     throw new Error(err.response?.data?.message || 'Failed to login')
@@ -39,7 +39,7 @@ export const loginUser = async ({
 }
 export const logoutUser = async () => {
   try {
-    const res = await api.post('/auth/logout')
+    const res = await api.post('api/auth/logout')
     return res.data
   } catch (err: any) {
     throw new Error(err.response?.data?.message || 'Failed to logout')
