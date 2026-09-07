@@ -17,8 +17,9 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [accessToken, setAccessToken] = useState<string | null>(null)
+  const [accessToken, setAccessToken] = useState<string | null>(() => getStoredAccessToken())
   const [user, setUser] = useState<AuthContextType['user'] | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const loadAuth = async () => {
@@ -29,6 +30,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(user)
       } catch (error) {
         console.log('Failed to refresh access token:', error)
+      }
+      finally {
+        setIsLoading(false) // 👈 Session check finished
       }
     }
     loadAuth()
