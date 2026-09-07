@@ -33,8 +33,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
     loadAuth()
   }, [])
-  useEffect(() => {
-    setStoredAccessToken(accessToken)
+   useEffect(() => {
+    if (accessToken) setStoredAccessToken(accessToken)
   }, [accessToken])
   return (
     <AuthContext.Provider
