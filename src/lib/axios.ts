@@ -51,7 +51,9 @@ api.interceptors.response.use(
       } catch (err) {
         // If refresh fails, log out clean
         setStoredAccessToken(null)
-
+        if (window.location.pathname !== '/login') {
+          window.location.href = '/login'
+        }
         return Promise.reject(err)
       }
     }
