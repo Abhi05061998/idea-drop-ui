@@ -37,7 +37,7 @@ export const logoutUser=async()=>{
 }
 export const refreshAccessToken =async()=>{
     try {
-        const res=await api.post("/auth/refresh")
+        const res=await api.post(`${import.meta.env.VITE_API_PRODUCTION_URL}/auth/refresh`)
         return res.data
     } catch (error:any) {
         throw new Error(error.response?.data?.message || "Failed to refresh access token");
